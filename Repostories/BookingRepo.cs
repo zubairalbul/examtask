@@ -21,11 +21,11 @@ namespace examtask.Repostories
             return _context.Bookings.Include(u => u.Patients).Include(b => b.Clinics).FirstOrDefault(br => br.BId == id);
         }
 
-        public (DateTime, string, string) Add(Bookings appointment)
+        public void Add(Bookings appointment)
         {
             _context.Bookings.Add(appointment);
             _context.SaveChanges();
-            return (appointment.BookingDate, appointment.Clinics.Specialization, appointment.Patients.PatientName);
+            
         }
     }
 }

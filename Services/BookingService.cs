@@ -1,5 +1,6 @@
 ﻿using examtask.Models;
 using examtask.Repostories;
+using Microsoft.Identity.Client;
 
 namespace examtask.Services
 {
@@ -54,14 +55,20 @@ namespace examtask.Services
             {
                 throw new ArgumentException("The Appointment is not available.");
             }
-            int no_slots = _clinicsService.GetClinicById(bookings.CId).No_Slot;
+            var book = _bookingRepo.GetAll();
+            if (book.Any(a => a.PId == bookings.PId && a.BookingDate == bookings.BookingDate))
+            {
+                throw new ArgumentException("The Appointment is already  booked.");
+            }
+                int no_slots = _clinicsService.GetClinicById(bookings.CId).No_Slot;
             int no_bookings = _bookingRepo.GetAll().Count(a => a.BookingDate == bookings.BookingDate);
             if (no_bookings >= no_slots)
             {
                 throw new ArgumentException("The Appointment is not available.");
             }
-
-            var appointment = _bookingRepo.Add(bookings);
+            bookings.slot_number = no_bookings+1;
+         
+            _bookingRepo.Add(bookings);
         }
 
 
