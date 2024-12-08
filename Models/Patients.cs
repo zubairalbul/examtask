@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace examtask.Models
 {
-    public class Patients
+    public class patients
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,9 +15,10 @@ namespace examtask.Models
         [Required]
         public int age { get; set; }
         //[NotMapped] 
-        public enum Gender { male, female }
+       
         [Required]
-        public Gender gender { get; set; }
+        public string gender { get; set; }
+        [JsonIgnore]
         public List<Bookings> Bookings { get; set; }
 
     }

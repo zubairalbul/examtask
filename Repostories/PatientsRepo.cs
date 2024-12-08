@@ -4,19 +4,19 @@
 namespace examtask.Repostories
 {
 
-    public class PatientsRepo : IPatientsRepo
+    public class PatientsRepo : IPatientRepo
     {
         private readonly ApplicationDbContext _context;
         public PatientsRepo(ApplicationDbContext context)
         {
             _context = context;
         }
-        public Patients GetById(int id)
+        public patients GetById(int id)
         {
             return _context.Patients.FirstOrDefault(a => a.PId == id);
         }
 
-        public int Add(Patients patient)
+        public int Add(patients patient)
         {
             _context.Patients.Add(patient);
             _context.SaveChanges();
@@ -31,7 +31,7 @@ namespace examtask.Repostories
                 _context.SaveChanges();
             }
         }
-        public void Update(int Pid, Patients newPatient)
+        public void Update(int Pid, patients newPatient)
         {
             var currentPatient = GetById(Pid);
             if (currentPatient != null)
@@ -43,7 +43,7 @@ namespace examtask.Repostories
                 _context.SaveChanges();
             }
         }
-        public IEnumerable<Patients> GetAll()
+        public IEnumerable<patients> GetAll()
         {
             return _context.Patients.ToList();
         }

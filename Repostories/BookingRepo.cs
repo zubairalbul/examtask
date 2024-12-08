@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace examtask.Repostories
 {
-    public class BookingRepo
+    public class BookingRepo : IBookingRepo
     {
         private readonly ApplicationDbContext _context;
 

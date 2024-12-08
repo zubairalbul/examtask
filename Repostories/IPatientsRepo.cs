@@ -2,12 +2,12 @@
 
 namespace examtask.Repostories
 {
-    public interface IPatientsRepo
+    public interface IPatientRepo
     {
-        int Add(Patients patient);
+        int Add(patients patient);
         void Delete(int PId);
-        IEnumerable<Patients> GetAll();
-        Patients GetById(int id);
-        void Update(int Pid, Patients newPatient);
+        IEnumerable<patients> GetAll();
+        patients GetById(int id);
+        void Update(int Pid, patients newPatient);
     }
 }

@@ -9,7 +9,7 @@ namespace examtask
         {
 
         }
-        public DbSet<Patients> Patients { get; set; }
+        public DbSet<patients> Patients { get; set; }
         public DbSet<Clinics> Clinics { get; set; }
         public DbSet<Bookings> Bookings { get; set; }
 

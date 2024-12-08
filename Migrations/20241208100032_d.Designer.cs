@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using examtask;
 
@@ -11,9 +12,11 @@ using examtask;
 namespace examtask.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241208100032_d")]
+    partial class d
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,7 +52,7 @@ namespace examtask.Migrations
 
                     b.HasIndex("CId");
 
-                    b.HasIndex("PId");
+                    b.HasIndex("slot_number");
 
                     b.ToTable("Bookings");
                 });
@@ -108,7 +111,7 @@ namespace examtask.Migrations
 
                     b.HasOne("examtask.Models.patients", "Patients")
                         .WithMany("Bookings")
-                        .HasForeignKey("PId")
+                        .HasForeignKey("slot_number")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
